@@ -31,7 +31,7 @@ they are fairly straight forward to understand.
 # Example
 
 The most simple way to calculate the TfIdf of a document is with the default 
-implementation. Note, the library provides implementation for 
+implementation. Note, the library provides implementation of 
 `ProcessedDocument`, for a `Vec<(T, usize)>`.
 
 ```rust
@@ -63,12 +63,12 @@ impl<T> TfIdf<T> for MyTfIdfStrategy where T : ProcessedDocument {
   type Idf = InverseFrequencySmoothIdf; 
 }
 
-# let mut docs = Vec::new();
-# let doc1 = vec![("a", 3), ("b", 2), ("c", 4)];
-# let doc2 = vec![("a", 2), ("d", 5)];
+let mut docs = Vec::new();
+let doc1 = vec![("a", 3), ("b", 2), ("c", 4)];
+let doc2 = vec![("a", 2), ("d", 5)];
 
-# docs.push(doc1);
-# docs.push(doc2);
+docs.push(doc1);
+docs.push(doc2);
 
 assert!(MyTfIdfStrategy::tfidf("a", &docs[0], docs.iter()) > 0f64);
 assert!(MyTfIdfStrategy::tfidf("c", &docs[0], docs.iter()) > 0f64);

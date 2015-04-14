@@ -27,7 +27,7 @@
 //! # Example
 //!
 //! The most simple way to calculate the TfIdf of a document is with the default 
-//! implementation. Note, the library provides implementation for 
+//! implementation. Note, the library provides implementation of 
 //! `ProcessedDocument`, for a `Vec<(T, usize)>`.
 //!
 //! ```rust
