@@ -5,7 +5,10 @@
 
 extern crate num;
 
-pub use prelude::{Document, NaiveDocument, Tf, NormalizationFactor};
+pub use prelude::{Document, NaiveDocument, ExpandableDocument, ProcessedDocument, 
+  Tf, NormalizationFactor, SmoothingFactor, TfIdf};
+
+#[cfg(test)] use std::borrow::Borrow;
 
 mod prelude;
 
@@ -19,12 +22,23 @@ pub mod tf;
 /// check the Wiki link in the crate description.
 pub mod idf;
 
-#[cfg(test)]
-impl<T> Document for Vec<(T, usize)> where T : PartialEq {
-  type Term = T;
+/// Default scheme for calculating tf-idf.
+#[derive(Copy, Clone)] pub struct TfIdfDefault;
 
-  fn term_frequency(&self, term: &T) -> usize {
-    match self.iter().find(|&&(ref t, _)| t == term) {
+impl<T> TfIdf<T> for TfIdfDefault where T : ProcessedDocument {
+  type Tf = tf::DoubleHalfNormalizationTf;
+  type Idf = idf::InverseFrequencyIdf;
+}
+
+#[cfg(test)]
+impl<T> Document for Vec<(T, usize)> {
+  type Term = T;
+}
+
+#[cfg(test)]
+impl<T> ProcessedDocument for Vec<(T, usize)> where T : PartialEq {
+  fn term_frequency<K>(&self, term: K) -> usize where K : Borrow<T> {
+    match self.iter().find(|&&(ref t, _)| t == term.borrow()) {
       Some(&(_, c)) => c,
       None => 0
     }
