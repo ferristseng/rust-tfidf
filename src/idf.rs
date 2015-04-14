@@ -71,7 +71,7 @@ where T : ProcessedDocument<Term = E> + ExpandableDocument<'l>, E : Hash + Eq + 
     let num_docs = docs.fold(0, |n, d|
       {
         for t in d.terms() { counts.insert(t, 0); }
-        
+
         if d.term_exists(term.borrow()) { n + 1 } else { n }
       });
     let max = *counts.values().max().unwrap_or(&1);
@@ -81,7 +81,7 @@ where T : ProcessedDocument<Term = E> + ExpandableDocument<'l>, E : Hash + Eq + 
 }
 
 #[test]
-fn tfidf_wiki_example_tests() {
+fn idf_wiki_example_tests() {
   let mut docs = Vec::new();
 
   docs.push(vec![("this", 1), ("is", 1), ("a", 2), ("sample", 1)]);
