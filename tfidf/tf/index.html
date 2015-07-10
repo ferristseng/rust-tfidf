@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `tf` mod in crate `tfidf`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, tf">
+
+    <title>tfidf::tf - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>tfidf</a></p><script>window.sidebarCurrent = {name: 'tf', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Module <a href='../index.html'>tfidf</a>::<wbr><a class='mod' href=''>tf</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-209' class='srclink' href='../../src/tfidf/tf.rs.html#1-76' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>Implementations of different weighting schemes for term frequency (tf).
+For more information about which ones are implemented, check the Wiki 
+link in the crate description.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.BinaryTf.html'
+                               title='tfidf::tf::BinaryTf'>BinaryTf</a></td>
+                        <td class='docblock short'>
+                             <p>Binary weighting scheme for TF. If the document contains the term, returns 1,
+otherwise returns 0.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.DoubleHalfNormalizationTf.html'
+                               title='tfidf::tf::DoubleHalfNormalizationTf'>DoubleHalfNormalizationTf</a></td>
+                        <td class='docblock short'>
+                             <p>Double normalized weighting scheme for TF based on a factor, <code>K = 0.5</code>.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.LogNormalizationTf.html'
+                               title='tfidf::tf::LogNormalizationTf'>LogNormalizationTf</a></td>
+                        <td class='docblock short'>
+                             <p>Log normalized weighting scheme for TF. Computes <code>1 + log (f)</code> where <code>f</code> is the
+frequency of the term in the document.</p>
+
+                        </td>
+                    </tr>
+                
+                    <tr class=' module-item'>
+                        <td><a class='struct' href='struct.RawFrequencyTf.html'
+                               title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a></td>
+                        <td class='docblock short'>
+                             <p>Raw frequency weighting scheme for TF. Returns the number of times a term occurs
+in the document.</p>
+
+                        </td>
+                    </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.DoubleKNormalizationTf.html'
+                               title='tfidf::tf::DoubleKNormalizationTf'>DoubleKNormalizationTf</a></td>
+                        <td class='docblock short'>
+                             <p>Double normalized weighting scheme for TF based on a factor, <code>K</code>.</p>
+
+                        </td>
+                    </tr>
+                </table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "tfidf";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>

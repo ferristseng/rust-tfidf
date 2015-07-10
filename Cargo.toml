@@ -1,0 +1,14 @@
+[package]
+name = "rust-tfidf"
+repository = "https://github.com/ferristseng/rust-tfidf"
+version = "1.0.1"
+authors = ["Ferris Tseng <ferristseng@gmail.com>"]
+keywords = ["tfidf", "text", "document", "statistic"]
+license = "MIT"
+readme = "README.md"
+
+[lib]
+name = "tfidf"
+
+[dependencies]
+num = "*"

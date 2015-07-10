@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `UnaryIdf` struct in crate `tfidf`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, UnaryIdf">
+
+    <title>tfidf::idf::UnaryIdf - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <section class="sidebar">
+        
+        <p class='location'><a href='../index.html'>tfidf</a>::<wbr><a href='index.html'>idf</a></p><script>window.sidebarCurrent = {name: 'UnaryIdf', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </section>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press 'S' to search, '?' for more options..."
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>tfidf</a>::<wbr><a href='index.html'>idf</a>::<wbr><a class='struct' href=''>UnaryIdf</a></span><span class='out-of-band'><span id='render-detail'>
+            <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                [<span class='inner'>&#x2212;</span>]
+            </a>
+        </span><a id='src-499' class='srclink' href='../../src/tfidf/idf.rs.html#10' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct UnaryIdf;</pre><div class='docblock'><p>Unary weighting scheme for IDF. If the corpus contains a document with the
+term, returns 1, otherwise returns 0.</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;T&gt; Idf&lt;T&gt; for <a class='struct' href='../../tfidf/idf/struct.UnaryIdf.html' title='tfidf::idf::UnaryIdf'>UnaryIdf</a> <span class='where'>where T: <a class='trait' href='../../tfidf/trait.NaiveDocument.html' title='tfidf::NaiveDocument'>NaiveDocument</a></span></code></h3><div class='impl-items'><h4 id='method.idf' class='method'><code>fn <a href='#method.idf' class='fnname'>idf</a>&lt;'a, I, K&gt;(term: K, docs: I) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a> <span class='where'>where I: <a class='trait' href='http://doc.rust-lang.org/nightly/core/iter/trait.Iterator.html' title='core::iter::Iterator'>Iterator</a>&lt;Item=&amp;'a T&gt;, K: <a class='trait' href='http://doc.rust-lang.org/nightly/collections/borrow/trait.Borrow.html' title='collections::borrow::Borrow'>Borrow</a>&lt;T::Term&gt;</span></code></h4>
+</div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../tfidf/idf/struct.UnaryIdf.html' title='tfidf::idf::UnaryIdf'>UnaryIdf</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../tfidf/idf/struct.UnaryIdf.html' title='tfidf::idf::UnaryIdf'>UnaryIdf</a></code></h4>
+<h4 id='method.clone_from' class='method'><code>fn <a href='http://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
+</div><h3 class='impl'><code>impl <a class='trait' href='http://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../tfidf/idf/struct.UnaryIdf.html' title='tfidf::idf::UnaryIdf'>UnaryIdf</a></code></h3><div class='impl-items'></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <div id="help" class="hidden">
+        <div class="shortcuts">
+            <h1>Keyboard shortcuts</h1>
+            <dl>
+                <dt>?</dt>
+                <dd>Show this help dialog</dd>
+                <dt>S</dt>
+                <dd>Focus the search field</dd>
+                <dt>&larrb;</dt>
+                <dd>Move up in search results</dd>
+                <dt>&rarrb;</dt>
+                <dd>Move down in search results</dd>
+                <dt>&#9166;</dt>
+                <dd>Go to active search result</dd>
+            </dl>
+        </div>
+        <div class="infos">
+            <h1>Search tricks</h1>
+            <p>
+                Prefix searches with a type followed by a colon (e.g.
+                <code>fn:</code>) to restrict the search to a given type.
+            </p>
+            <p>
+                Accepted types are: <code>fn</code>, <code>mod</code>,
+                <code>struct</code>, <code>enum</code>,
+                <code>trait</code>, <code>typedef</code> (or
+                <code>tdef</code>).
+            </p>
+            <p>
+                Search functions by type signature (e.g.
+                <code>vec -> usize</code>)
+            </p>
+        </div>
+    </div>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "tfidf";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script async src="../../search-index.js"></script>
+</body>
+</html>
