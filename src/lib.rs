@@ -71,7 +71,7 @@
 //! ```
 
 #![deny(missing_docs)]
-#![feature(core)]
+#![feature(core, iter_cmp)]
 
 extern crate num;
 
