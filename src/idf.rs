@@ -10,8 +10,9 @@ use prelude::{NaiveDocument, ProcessedDocument, ExpandableDocument,
 #[derive(Copy, Clone)] pub struct UnaryIdf;
 
 impl<T> Idf<T> for UnaryIdf where T : NaiveDocument {
-  #[inline] fn idf<'a, I, K>(term: K, docs: I) -> f64 
-    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>
+  #[inline] 
+  fn idf<'a, I, K>(term: K, docs: I) -> f64 
+    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>, T : 'a
   {
     docs.fold(0f64, |_, d| if d.term_exists(term.borrow()) { 1f64 } else { 0f64 })
   }
@@ -22,10 +23,11 @@ impl<T> Idf<T> for UnaryIdf where T : NaiveDocument {
 trait InverseFrequencySmoothedIdfStrategy : SmoothingFactor { }
 
 impl<S, T> Idf<T> for S 
-where S : InverseFrequencySmoothedIdfStrategy, T : NaiveDocument
+  where S : InverseFrequencySmoothedIdfStrategy, T : NaiveDocument
 {
-  #[inline] fn idf<'a, I, K>(term: K, docs: I) -> f64
-    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>
+  #[inline] 
+  fn idf<'a, I, K>(term: K, docs: I) -> f64
+    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>, T : 'a
   {
     let (num_docs, ttl_docs) = docs.fold(
       (0f64, 0f64), 
@@ -39,8 +41,7 @@ where S : InverseFrequencySmoothedIdfStrategy, T : NaiveDocument
 /// the corpus of documents.
 #[derive(Copy, Clone)] pub struct InverseFrequencyIdf;
 
-impl SmoothingFactor for InverseFrequencyIdf
-{
+impl SmoothingFactor for InverseFrequencyIdf {
   fn factor() -> f64 { 0f64 }
 }
 
@@ -49,8 +50,7 @@ impl InverseFrequencySmoothedIdfStrategy for InverseFrequencyIdf { }
 /// Inverse frequency weighting scheme for IDF. Computes `log (1 + (N / nt))`. 
 #[derive(Copy, Clone)] pub struct InverseFrequencySmoothIdf;
 
-impl SmoothingFactor for InverseFrequencySmoothIdf
-{
+impl SmoothingFactor for InverseFrequencySmoothIdf {
   fn factor() -> f64 { 1f64 }
 }
 
@@ -62,10 +62,11 @@ impl InverseFrequencySmoothedIdfStrategy for InverseFrequencySmoothIdf { }
 #[derive(Copy, Clone)] pub struct InverseFrequencyMaxIdf;
 
 impl<'l, T, E> Idf<T> for InverseFrequencyMaxIdf 
-where T : ProcessedDocument<Term = E> + ExpandableDocument<'l>, E : Hash + Eq + 'l
+  where T : ProcessedDocument<Term = E> + ExpandableDocument<'l>, E : Hash + Eq + 'l
 {
-  #[inline] fn idf<'a, I, K>(term: K, docs: I) -> f64
-    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>
+  #[inline] 
+  fn idf<'a, I, K>(term: K, docs: I) -> f64
+    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>, T : 'a
   {
     let mut counts: HashMap<&T::Term, usize> = HashMap::new();
     let num_docs = docs.fold(0, |n, d|

@@ -8,7 +8,8 @@ use prelude::{ProcessedDocument, NaiveDocument, Tf, NormalizationFactor};
 #[derive(Copy, Clone)] pub struct BinaryTf;
 
 impl<T> Tf<T> for BinaryTf where T : NaiveDocument {
-  #[inline] fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> { 
+  #[inline] 
+  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> { 
     if doc.term_exists(term) { 1f64 } else { 0f64 } 
   }
 }
@@ -28,7 +29,8 @@ impl<T> Tf<T> for RawFrequencyTf where T : ProcessedDocument {
 #[derive(Copy, Clone)] pub struct LogNormalizationTf;
 
 impl<T> Tf<T> for LogNormalizationTf where T : ProcessedDocument {
-  #[inline] fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
+  #[inline] 
+  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
     1f64 + (doc.term_frequency(term) as f64).ln()
   }
 }
@@ -54,7 +56,8 @@ impl<T> Tf<T> for LogNormalizationTf where T : ProcessedDocument {
 pub trait DoubleKNormalizationTf : NormalizationFactor { }
 
 impl<T, S> Tf<T> for S where S : DoubleKNormalizationTf, T : ProcessedDocument {
-  #[inline] fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
+  #[inline] 
+  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
     let max = match doc.max() {
       Some(m) => doc.term_frequency(m) as f64, 
       None => 1f64

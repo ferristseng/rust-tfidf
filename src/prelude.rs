@@ -27,7 +27,9 @@ pub trait ProcessedDocument : Document {
 }
 
 /// A document that can be expanded to a collection of terms.
-pub trait ExpandableDocument<'a> : Document {
+pub trait ExpandableDocument<'a> : Document 
+  where <Self as Document>::Term : 'a 
+{
   /// The type of iterator that this implementor returns.
   type TermIterator : Iterator<Item = &'a Self::Term>;
 
@@ -36,7 +38,8 @@ pub trait ExpandableDocument<'a> : Document {
 }
 
 impl<D, T> NaiveDocument for D where D : ProcessedDocument<Term = T> {
-  #[inline] fn term_exists<K>(&self, term: K) -> bool where K : Borrow<T> { 
+  #[inline] 
+  fn term_exists<K>(&self, term: K) -> bool where K : Borrow<T> { 
     self.term_frequency(term) > 0 
   }
 }
@@ -55,7 +58,7 @@ pub trait Idf<T> where T : NaiveDocument {
   /// Returns the weighted or unweighted inverse document frequency (idf) 
   /// for a single term within a corpus of documents.
   fn idf<'a, I, K>(term: K, docs: I) -> f64 
-    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>;
+    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>, T : 'a;
 }
 
 /// A strategy that uses a normalization factor.
@@ -80,7 +83,7 @@ pub trait TfIdf<T> where T : NaiveDocument {
 
   /// Calculates the tf-idf using the two weighting schemes chosen.
   fn tfidf<'a, K, I>(term: K, doc: &T, docs: I) -> f64 
-    where I : Iterator<Item = &'a T>, K : Borrow<T::Term> 
+    where I : Iterator<Item = &'a T>, K : Borrow<T::Term>, T : 'a 
   {
     Self::Tf::tf(term.borrow(), doc) * Self::Idf::idf(term.borrow(), docs)
   }
