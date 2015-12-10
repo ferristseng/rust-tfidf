@@ -71,7 +71,6 @@
 //! ```
 
 #![deny(missing_docs)]
-#![feature(iter_cmp)]
 
 extern crate num;
 
@@ -113,7 +112,7 @@ impl<T> ProcessedDocument for Vec<(T, usize)> where T : PartialEq {
   }
 
   fn max(&self) -> Option<&T> {
-    match self.iter().max_by(|&&(_, c)| c) {
+    match self.iter().max_by_key(|&&(_, c)| c) {
       Some(&(ref t, _)) => Some(t),
       None => None
     }
