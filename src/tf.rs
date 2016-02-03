@@ -3,34 +3,51 @@ use num::traits::Float;
 
 use prelude::{ProcessedDocument, NaiveDocument, Tf, NormalizationFactor};
 
-/// Binary weighting scheme for TF. If the document contains the term, returns 1, 
+/// Binary weighting scheme for TF. If the document contains the term, returns 1,
 /// otherwise returns 0.
-#[derive(Copy, Clone)] pub struct BinaryTf;
+#[derive(Copy, Clone)]
+pub struct BinaryTf;
 
-impl<T> Tf<T> for BinaryTf where T : NaiveDocument {
-  #[inline] 
-  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> { 
-    if doc.term_exists(term) { 1f64 } else { 0f64 } 
+impl<T> Tf<T> for BinaryTf where T: NaiveDocument
+{
+  #[inline]
+  fn tf<K>(term: K, doc: &T) -> f64
+    where K: Borrow<T::Term>
+  {
+    if doc.term_exists(term) {
+      1f64
+    } else {
+      0f64
+    }
   }
 }
 
-/// Raw frequency weighting scheme for TF. Returns the number of times a term occurs 
+/// Raw frequency weighting scheme for TF. Returns the number of times a term occurs
 /// in the document.
-#[derive(Copy, Clone)] pub struct RawFrequencyTf(f64);
+#[derive(Copy, Clone)]
+pub struct RawFrequencyTf(f64);
 
-impl<T> Tf<T> for RawFrequencyTf where T : ProcessedDocument {
-  #[inline] fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> { 
-    doc.term_frequency(term) as f64 
+impl<T> Tf<T> for RawFrequencyTf where T: ProcessedDocument
+{
+  #[inline]
+  fn tf<K>(term: K, doc: &T) -> f64
+    where K: Borrow<T::Term>
+  {
+    doc.term_frequency(term) as f64
   }
 }
 
-/// Log normalized weighting scheme for TF. Computes `1 + log (f)` where `f` is the 
+/// Log normalized weighting scheme for TF. Computes `1 + log (f)` where `f` is the
 /// frequency of the term in the document.
-#[derive(Copy, Clone)] pub struct LogNormalizationTf;
+#[derive(Copy, Clone)]
+pub struct LogNormalizationTf;
 
-impl<T> Tf<T> for LogNormalizationTf where T : ProcessedDocument {
-  #[inline] 
-  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
+impl<T> Tf<T> for LogNormalizationTf where T: ProcessedDocument
+{
+  #[inline]
+  fn tf<K>(term: K, doc: &T) -> f64
+    where K: Borrow<T::Term>
+  {
     1f64 + (doc.term_frequency(term) as f64).ln()
   }
 }
@@ -55,25 +72,33 @@ impl<T> Tf<T> for LogNormalizationTf where T : ProcessedDocument {
 /// ```
 pub trait DoubleKNormalizationTf : NormalizationFactor { }
 
-impl<T, S> Tf<T> for S where S : DoubleKNormalizationTf, T : ProcessedDocument {
-  #[inline] 
-  fn tf<K>(term: K, doc: &T) -> f64 where K : Borrow<T::Term> {
+impl<T, S> Tf<T> for S
+  where S: DoubleKNormalizationTf,
+        T: ProcessedDocument
+{
+  #[inline]
+  fn tf<K>(term: K, doc: &T) -> f64
+    where K: Borrow<T::Term>
+  {
     let max = match doc.max() {
-      Some(m) => doc.term_frequency(m) as f64, 
-      None => 1f64
+      Some(m) => doc.term_frequency(m) as f64,
+      None => 1f64,
     };
 
     // K + ((1 - K) * (f / max f))
-    S::factor() + 
-      ((1f64 - S::factor()) * ((doc.term_frequency(term) as f64) / max)) 
+    S::factor() + ((1f64 - S::factor()) * ((doc.term_frequency(term) as f64) / max))
   }
 }
 
 /// Double normalized weighting scheme for TF based on a factor, `K = 0.5`.
-#[derive(Copy, Clone)] pub struct DoubleHalfNormalizationTf;
+#[derive(Copy, Clone)]
+pub struct DoubleHalfNormalizationTf;
 
 impl NormalizationFactor for DoubleHalfNormalizationTf {
-  #[inline] fn factor() -> f64 { 0.5f64 }
+  #[inline]
+  fn factor() -> f64 {
+    0.5f64
+  }
 }
 
-impl DoubleKNormalizationTf for DoubleHalfNormalizationTf { }
+impl DoubleKNormalizationTf for DoubleHalfNormalizationTf {}
