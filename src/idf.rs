@@ -20,7 +20,7 @@ impl<T> Idf<T> for UnaryIdf where T : NaiveDocument {
 
 /// Inverse frequency weighting scheme for IDF with a smoothing factor. Used 
 /// internally as a marker trait.
-trait InverseFrequencySmoothedIdfStrategy : SmoothingFactor { }
+pub trait InverseFrequencySmoothedIdfStrategy : SmoothingFactor { }
 
 impl<S, T> Idf<T> for S 
   where S : InverseFrequencySmoothedIdfStrategy, T : NaiveDocument
