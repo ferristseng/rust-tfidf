@@ -9,6 +9,7 @@
 
     <title>tfidf - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'></p><script>window.sidebarCurrent = {name: 'tfidf', ty: 'mod', relpath: '../'};</script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,37 +46,35 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-0' class='srclink' href='../src/tfidf/lib.rs.html#1-129' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-0' class='srclink' href='../src/tfidf/lib.rs.html#8-140' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Library to calculate TF-IDF (Term Frequency - Inverse Document Frequency)
-for generic documents. The library provides strategies to act on objects 
+for generic documents. The library provides strategies to act on objects
 that implement certain document traits (<code>NaiveDocument</code>, <code>ProcessedDocument</code>,
 <code>ExpandableDocument</code>).</p>
 
-<p>For more information on the strategies that were implemented, check out 
+<p>For more information on the strategies that were implemented, check out
 <a href="http://en.wikipedia.org/wiki/Tf%E2%80%93idf">Wikipedia</a>.</p>
 
-<h1 id="document-types" class='section-header'><a
-                           href="#document-types">Document Types</a></h1>
-<p>A document is defined as a collection of terms. The documents don&#39;t make 
+<h1 id='document-types' class='section-header'><a href='#document-types'>Document Types</a></h1>
+<p>A document is defined as a collection of terms. The documents don&#39;t make
 assumptions about the term types (the terms are not normalized in any way).</p>
 
-<p>These document types are of my design. The terminology isn&#39;t standard, but 
+<p>These document types are of my design. The terminology isn&#39;t standard, but
 they are fairly straight forward to understand.</p>
 
 <ul>
-<li><p><code>NaiveDocument</code> - A document is &#39;naive&#39; if it only knows if a term is 
-contained within it or not, but does not know HOW MANY of the instances 
+<li><p><code>NaiveDocument</code> - A document is &#39;naive&#39; if it only knows if a term is
+contained within it or not, but does not know HOW MANY of the instances
 of the term it contains.</p></li>
-<li><p><code>ProcessedDocument</code> - A document is &#39;processed&#39; if it knows how many 
+<li><p><code>ProcessedDocument</code> - A document is &#39;processed&#39; if it knows how many
 instances of each term is contained within it.</p></li>
-<li><p><code>ExpandableDocument</code> - A document is &#39;expandable&#39; if provides a way to 
+<li><p><code>ExpandableDocument</code> - A document is &#39;expandable&#39; if provides a way to
 access each term contained within it.</p></li>
 </ul>
 
-<h1 id="example" class='section-header'><a
-                           href="#example">Example</a></h1>
-<p>The most simple way to calculate the TfIdf of a document is with the default 
-implementation. Note, the library provides implementation of 
+<h1 id='example' class='section-header'><a href='#example'>Example</a></h1>
+<p>The most simple way to calculate the TfIdf of a document is with the default
+implementation. Note, the library provides implementation of
 <code>ProcessedDocument</code>, for a <code>Vec&lt;(T, usize)&gt;</code>.</p>
 <pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>tfidf</span>::{<span class='ident'>TfIdf</span>, <span class='ident'>TfIdfDefault</span>};
@@ -91,7 +90,7 @@ implementation. Note, the library provides implementation of
 <span class='macro'>assert</span><span class='macro'>!</span>(<span class='ident'>TfIdfDefault</span>::<span class='ident'>tfidf</span>(<span class='string'>&quot;c&quot;</span>, <span class='kw-2'>&amp;</span><span class='ident'>docs</span>[<span class='number'>0</span>], <span class='ident'>docs</span>.<span class='ident'>iter</span>()) <span class='op'>&gt;</span> <span class='number'>0.5</span>);</pre>
 
 <p>You can also roll your own strategies to calculate tf-idf using some strategies
-included in the library. </p>
+included in the library.</p>
 <pre class='rust rust-example-rendered'>
 <span class='kw'>use</span> <span class='ident'>tfidf</span>::{<span class='ident'>TfIdf</span>, <span class='ident'>ProcessedDocument</span>};
 <span class='kw'>use</span> <span class='ident'>tfidf</span>::<span class='ident'>tf</span>::{<span class='ident'>RawFrequencyTf</span>};
@@ -101,7 +100,7 @@ included in the library. </p>
 
 <span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>TfIdf</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='kw'>for</span> <span class='ident'>MyTfIdfStrategy</span> <span class='kw'>where</span> <span class='ident'>T</span> : <span class='ident'>ProcessedDocument</span> {
   <span class='kw'>type</span> <span class='ident'>Tf</span> <span class='op'>=</span> <span class='ident'>RawFrequencyTf</span>;
-  <span class='kw'>type</span> <span class='ident'>Idf</span> <span class='op'>=</span> <span class='ident'>InverseFrequencySmoothIdf</span>; 
+  <span class='kw'>type</span> <span class='ident'>Idf</span> <span class='op'>=</span> <span class='ident'>InverseFrequencySmoothIdf</span>;
 }
 
 
@@ -126,7 +125,7 @@ check the Wiki link in the crate description.</p>
                                title='tfidf::tf'>tf</a></td>
                         <td class='docblock short'>
                              <p>Implementations of different weighting schemes for term frequency (tf).
-For more information about which ones are implemented, check the Wiki 
+For more information about which ones are implemented, check the Wiki
 link in the crate description.</p>
 
                         </td>
@@ -166,8 +165,8 @@ link in the crate description.</p>
                                title='tfidf::NaiveDocument'>NaiveDocument</a></td>
                         <td class='docblock short'>
                              <p>A naive document with a simple function stating whether or not a
-term exists in the document or not. The document is naive , which 
-means the frequencies of each term has yet to be determined. This 
+term exists in the document or not. The document is naive , which
+means the frequencies of each term has yet to be determined. This
 type of document is useful for only some TF weighting schemes.</p>
 
                         </td>
@@ -223,10 +222,12 @@ score of a term from a document.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -243,7 +244,7 @@ score of a term from a document.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -263,7 +264,7 @@ score of a term from a document.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -275,6 +276,6 @@ score of a term from a document.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

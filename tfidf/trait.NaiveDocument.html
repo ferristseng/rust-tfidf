@@ -9,6 +9,7 @@
 
     <title>tfidf::NaiveDocument - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='index.html'>tfidf</a></p><script>window.sidebarCurrent = {name: 'NaiveDocument', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,17 +46,17 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-21' class='srclink' href='../src/tfidf/prelude.rs.html#13-16' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-12' class='srclink' href='../src/tfidf/prelude.rs.html#20-23' title='goto source code'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait NaiveDocument: <a class='trait' href='../tfidf/trait.Document.html' title='tfidf::Document'>Document</a> {
-    fn <a href='#tymethod.term_exists' class='fnname'>term_exists</a>&lt;K&gt;(&amp;self, term: K) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Self::<a class='trait' href='../tfidf/trait.NaiveDocument.html' title='tfidf::NaiveDocument'>Term</a>&gt;</span>;
+    fn <a href='#tymethod.term_exists' class='fnname'>term_exists</a>&lt;K&gt;(&amp;self, term: K) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Self::<a class='trait' href='../tfidf/trait.NaiveDocument.html' title='tfidf::NaiveDocument'>Term</a>&gt;</span>;
 }</pre><div class='docblock'><p>A naive document with a simple function stating whether or not a
-term exists in the document or not. The document is naive , which 
-means the frequencies of each term has yet to be determined. This 
+term exists in the document or not. The document is naive , which
+means the frequencies of each term has yet to be determined. This
 type of document is useful for only some TF weighting schemes.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
-        <h3 id='tymethod.term_exists' class='method stab '><code>fn <a href='#tymethod.term_exists' class='fnname'>term_exists</a>&lt;K&gt;(&amp;self, term: K) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Self::<a class='trait' href='../tfidf/trait.NaiveDocument.html' title='tfidf::NaiveDocument'>Term</a>&gt;</span></code></h3><div class='docblock'><p>Returns if a (non-normalized) term exists within the document.</p>
+        <h3 id='tymethod.term_exists' class='method stab '><code>fn <a href='#tymethod.term_exists' class='fnname'>term_exists</a>&lt;K&gt;(&amp;self, term: K) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;Self::<a class='trait' href='../tfidf/trait.NaiveDocument.html' title='tfidf::NaiveDocument'>Term</a>&gt;</span></code></h3><div class='docblock'><p>Returns if a (non-normalized) term exists within the document.</p>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
@@ -66,10 +67,12 @@ type of document is useful for only some TF weighting schemes.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -86,7 +89,7 @@ type of document is useful for only some TF weighting schemes.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -106,7 +109,7 @@ type of document is useful for only some TF weighting schemes.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -118,6 +121,6 @@ type of document is useful for only some TF weighting schemes.</p>
     <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     
-    <script async src="../search-index.js"></script>
+    <script defer src="../search-index.js"></script>
 </body>
 </html>

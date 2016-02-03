@@ -9,6 +9,7 @@
 
     <title>tfidf::idf - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>tfidf</a></p><script>window.sidebarCurrent = {name: 'idf', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,7 +46,7 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-495' class='srclink' href='../../src/tfidf/idf.rs.html#1-93' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-128' class='srclink' href='../../src/tfidf/idf.rs.html#8-132' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Implementations of different weighting schemes for inverse document
 frequency (IDF). For more information about which ones are implemented,
 check the Wiki link in the crate description.</p>
@@ -56,7 +57,7 @@ check the Wiki link in the crate description.</p>
                                title='tfidf::idf::InverseFrequencyIdf'>InverseFrequencyIdf</a></td>
                         <td class='docblock short'>
                              <p>Inverse frequency weighting scheme for IDF. Computes <code>log (N / nt)</code> where <code>N</code>
-is the number of documents, and <code>nt</code> is the number of times a term appears in 
+is the number of documents, and <code>nt</code> is the number of times a term appears in
 the corpus of documents.</p>
 
                         </td>
@@ -67,7 +68,7 @@ the corpus of documents.</p>
                                title='tfidf::idf::InverseFrequencyMaxIdf'>InverseFrequencyMaxIdf</a></td>
                         <td class='docblock short'>
                              <p>Inverse frequency weighting scheme for IDF. Compute <code>log (1 + (max nt / nt))</code>
-where <code>nt</code> is the number of times a term appears in the corpus, and <code>max nt</code> 
+where <code>nt</code> is the number of times a term appears in the corpus, and <code>max nt</code>
 returns the most number of times any term appears in the corpus.</p>
 
                         </td>
@@ -91,15 +92,28 @@ term, returns 1, otherwise returns 0.</p>
 
                         </td>
                     </tr>
+                </table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table>
+                    <tr class=' module-item'>
+                        <td><a class='trait' href='trait.InverseFrequencySmoothedIdfStrategy.html'
+                               title='tfidf::idf::InverseFrequencySmoothedIdfStrategy'>InverseFrequencySmoothedIdfStrategy</a></td>
+                        <td class='docblock short'>
+                             <p>Inverse frequency weighting scheme for IDF with a smoothing factor. Used
+internally as a marker trait.</p>
+
+                        </td>
+                    </tr>
                 </table></section>
     <section id='search' class="content hidden"></section>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -116,7 +130,7 @@ term, returns 1, otherwise returns 0.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -136,7 +150,7 @@ term, returns 1, otherwise returns 0.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -148,6 +162,6 @@ term, returns 1, otherwise returns 0.</p>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>

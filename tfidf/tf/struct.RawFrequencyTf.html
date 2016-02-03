@@ -9,6 +9,7 @@
 
     <title>tfidf::tf::RawFrequencyTf - Rust</title>
 
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
     <link rel="stylesheet" type="text/css" href="../../main.css">
 
     
@@ -24,10 +25,10 @@
 
     
 
-    <section class="sidebar">
+    <nav class="sidebar">
         
         <p class='location'><a href='../index.html'>tfidf</a>::<wbr><a href='index.html'>tf</a></p><script>window.sidebarCurrent = {name: 'RawFrequencyTf', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
-    </section>
+    </nav>
 
     <nav class="sub">
         <form class="search-form js-only">
@@ -45,10 +46,10 @@
             <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                 [<span class='inner'>&#x2212;</span>]
             </a>
-        </span><a id='src-280' class='srclink' href='../../src/tfidf/tf.rs.html#19' title='goto source code'>[src]</a></span></h1>
+        </span><a id='src-82' class='srclink' href='../../src/tfidf/tf.rs.html#35' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct RawFrequencyTf(_);</pre><div class='docblock'><p>Raw frequency weighting scheme for TF. Returns the number of times a term occurs
 in the document.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;T&gt; <a class='trait' href='../../tfidf/trait.Tf.html' title='tfidf::Tf'>Tf</a>&lt;T&gt; for <a class='struct' href='../../tfidf/tf/struct.RawFrequencyTf.html' title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a> <span class='where'>where T: <a class='trait' href='../../tfidf/trait.ProcessedDocument.html' title='tfidf::ProcessedDocument'>ProcessedDocument</a></span></code></h3><div class='impl-items'><h4 id='method.tf' class='method'><code>fn <a href='../../tfidf/trait.Tf.html#method.tf' class='fnname'>tf</a>&lt;K&gt;(term: K, doc: &amp;T) -&gt; <a href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;T::Term&gt;</span></code></h4>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><code>impl&lt;T&gt; <a class='trait' href='../../tfidf/trait.Tf.html' title='tfidf::Tf'>Tf</a>&lt;T&gt; for <a class='struct' href='../../tfidf/tf/struct.RawFrequencyTf.html' title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a> <span class='where'>where T: <a class='trait' href='../../tfidf/trait.ProcessedDocument.html' title='tfidf::ProcessedDocument'>ProcessedDocument</a></span></code></h3><div class='impl-items'><h4 id='method.tf' class='method'><code>fn <a href='../../tfidf/trait.Tf.html#method.tf' class='fnname'>tf</a>&lt;K&gt;(term: K, doc: &amp;T) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.f64.html'>f64</a> <span class='where'>where K: <a class='trait' href='https://doc.rust-lang.org/nightly/core/borrow/trait.Borrow.html' title='core::borrow::Borrow'>Borrow</a>&lt;T::Term&gt;</span></code></h4>
 </div><h3 id='derived_implementations'>Derived Implementations </h3><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> for <a class='struct' href='../../tfidf/tf/struct.RawFrequencyTf.html' title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a></code></h3><div class='impl-items'><h4 id='method.clone' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class='struct' href='../../tfidf/tf/struct.RawFrequencyTf.html' title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a></code></h4>
 <h4 id='method.clone_from' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code></h4>
 </div><h3 class='impl'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> for <a class='struct' href='../../tfidf/tf/struct.RawFrequencyTf.html' title='tfidf::tf::RawFrequencyTf'>RawFrequencyTf</a></code></h3><div class='impl-items'></div></section>
@@ -56,10 +57,12 @@ in the document.</p>
 
     <section class="footer"></section>
 
-    <div id="help" class="hidden">
+    <aside id="help" class="hidden">
         <div>
+            <h1 class="hidden">Help</h1>
+
             <div class="shortcuts">
-                <h1>Keyboard Shortcuts</h1>
+                <h2>Keyboard Shortcuts</h2>
 
                 <dl>
                     <dt>?</dt>
@@ -76,7 +79,7 @@ in the document.</p>
             </div>
 
             <div class="infos">
-                <h1>Search Tricks</h1>
+                <h2>Search Tricks</h2>
 
                 <p>
                     Prefix searches with a type followed by a colon (e.g.
@@ -96,7 +99,7 @@ in the document.</p>
                 </p>
             </div>
         </div>
-    </div>
+    </aside>
 
     
 
@@ -108,6 +111,6 @@ in the document.</p>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
     
-    <script async src="../../search-index.js"></script>
+    <script defer src="../../search-index.js"></script>
 </body>
 </html>
