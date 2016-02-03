@@ -1,10 +1,10 @@
 [package]
 name = "rust-tfidf"
 repository = "https://github.com/ferristseng/rust-tfidf"
-version = "1.0.3"
+version = "1.0.4"
 authors = ["Ferris Tseng <ferristseng@gmail.com>"]
 keywords = ["tfidf", "text", "document", "statistic"]
-license = "MIT"
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 description = "Library to calculate TF-IDF (Term Frequency - Inverse Document Frequency) for generic documents"
 
