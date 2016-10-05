@@ -6,7 +6,6 @@
 // copied, modified, or distributed except according to those terms.
 
 use std::borrow::Borrow;
-use num::traits::Float;
 
 use prelude::{ProcessedDocument, NaiveDocument, Tf, NormalizationFactor};
 
