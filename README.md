@@ -1,6 +1,6 @@
 # Rust TF-IDF
 
-[![Build Status](https://travis-ci.org/ferristseng/rust-tfidf.svg?branch=master)](https://travis-ci.org/ferristseng/rust-punkt)
+[![Build Status](https://travis-ci.org/ferristseng/rust-tfidf.svg?branch=master)](https://travis-ci.org/github/ferristseng/rust-tfidf)
 
 Library to calculate TF-IDF (Term Frequency - Inverse Document Frequency)
 for generic documents. The library provides strategies to act on objects 

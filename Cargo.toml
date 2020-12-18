@@ -1,7 +1,7 @@
 [package]
 name = "rust-tfidf"
 repository = "https://github.com/ferristseng/rust-tfidf"
-version = "1.0.4"
+version = "1.1.0"
 authors = ["Ferris Tseng <ferristseng@gmail.com>"]
 keywords = ["tfidf", "text", "document", "statistic"]
 license = "MIT OR Apache-2.0"
