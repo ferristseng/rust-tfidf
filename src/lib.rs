@@ -79,12 +79,12 @@
 
 #![deny(missing_docs)]
 
-extern crate num;
-
 pub use prelude::{Document, NaiveDocument, ExpandableDocument, ProcessedDocument, Tf,
                   NormalizationFactor, SmoothingFactor, TfIdf};
 
 use std::borrow::Borrow;
+use std::collections::{HashMap, BTreeMap};
+use std::hash::Hash;
 
 mod prelude;
 
@@ -128,6 +128,42 @@ impl<T> ProcessedDocument for Vec<(T, usize)> where T: PartialEq
       Some(&(ref t, _)) => Some(t),
       None => None,
     }
+  }
+}
+
+impl<T> Document for HashMap<T, usize> {
+  type Term = T;
+}
+
+impl<T> ProcessedDocument for HashMap<T, usize> where T: Eq + Hash {
+  fn term_frequency<K>(&self, term: K) -> usize where K: Borrow<Self::Term> {
+    if let Some(v) = self.get(term.borrow()) {
+      *v
+    } else {
+      0
+    }
+  }
+
+  fn max(&self) -> Option<&Self::Term> {
+    self.iter().max_by_key(|(_k, v)| *v).map(|(k, _v)| k)
+  }
+}
+
+impl<T> Document for BTreeMap<T, usize> {
+  type Term = T;
+}
+
+impl<T> ProcessedDocument for BTreeMap<T, usize> where T: Ord {
+  fn term_frequency<K>(&self, term: K) -> usize where K: Borrow<Self::Term> {
+      if let Some(v) = self.get(term.borrow()) {
+        *v
+      } else {
+        0
+      }
+  }
+
+  fn max(&self) -> Option<&Self::Term> {
+    self.iter().max_by_key(|(_k, v)| *v).map(|(k, _v)| k)
   }
 }
 

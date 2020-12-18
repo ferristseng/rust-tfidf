@@ -130,3 +130,25 @@ fn idf_wiki_example_tests() {
   assert_eq!(UnaryIdf::idf("this", docs.iter()), 1f64);
   assert_eq!(InverseFrequencyIdf::idf("this", docs.iter()), 0f64);
 }
+
+#[test]
+fn idf_wiki_example_tests_hashmap() {
+  let mut docs: Vec<std::collections::HashMap<&'static str, usize>> = Vec::new();
+
+  docs.push(vec![("this", 1), ("is", 1), ("a", 2), ("sample", 1)].into_iter().collect());
+  docs.push(vec![("this", 1), ("is", 1), ("another", 2), ("example", 3)].into_iter().collect());
+
+  assert_eq!(UnaryIdf::idf("this", docs.iter()), 1f64);
+  assert_eq!(InverseFrequencyIdf::idf("this", docs.iter()), 0f64);
+}
+
+#[test]
+fn idf_wiki_example_tests_btreemap() {
+  let mut docs: Vec<std::collections::BTreeMap<&'static str, usize>> = Vec::new();
+
+  docs.push(vec![("this", 1), ("is", 1), ("a", 2), ("sample", 1)].into_iter().collect());
+  docs.push(vec![("this", 1), ("is", 1), ("another", 2), ("example", 3)].into_iter().collect());
+
+  assert_eq!(UnaryIdf::idf("this", docs.iter()), 1f64);
+  assert_eq!(InverseFrequencyIdf::idf("this", docs.iter()), 0f64);
+}

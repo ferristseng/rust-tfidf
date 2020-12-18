@@ -12,4 +12,3 @@ description = "Library to calculate TF-IDF (Term Frequency - Inverse Document Fr
 name = "tfidf"
 
 [dependencies]
-num = "0.1.*"
