@@ -7,18 +7,21 @@
 
 use std::borrow::Borrow;
 
-use prelude::{ProcessedDocument, NaiveDocument, Tf, NormalizationFactor};
+use prelude::{NaiveDocument, NormalizationFactor, ProcessedDocument, Tf};
 
 /// Binary weighting scheme for TF. If the document contains the term, returns 1,
 /// otherwise returns 0.
 #[derive(Copy, Clone)]
 pub struct BinaryTf;
 
-impl<T> Tf<T> for BinaryTf where T: NaiveDocument
+impl<T> Tf<T> for BinaryTf
+where
+  T: NaiveDocument,
 {
   #[inline]
   fn tf<K>(term: K, doc: &T) -> f64
-    where K: Borrow<T::Term>
+  where
+    K: Borrow<T::Term>,
   {
     if doc.term_exists(term) {
       1f64
@@ -33,11 +36,14 @@ impl<T> Tf<T> for BinaryTf where T: NaiveDocument
 #[derive(Copy, Clone)]
 pub struct RawFrequencyTf(f64);
 
-impl<T> Tf<T> for RawFrequencyTf where T: ProcessedDocument
+impl<T> Tf<T> for RawFrequencyTf
+where
+  T: ProcessedDocument,
 {
   #[inline]
   fn tf<K>(term: K, doc: &T) -> f64
-    where K: Borrow<T::Term>
+  where
+    K: Borrow<T::Term>,
   {
     doc.term_frequency(term) as f64
   }
@@ -48,11 +54,14 @@ impl<T> Tf<T> for RawFrequencyTf where T: ProcessedDocument
 #[derive(Copy, Clone)]
 pub struct LogNormalizationTf;
 
-impl<T> Tf<T> for LogNormalizationTf where T: ProcessedDocument
+impl<T> Tf<T> for LogNormalizationTf
+where
+  T: ProcessedDocument,
 {
   #[inline]
   fn tf<K>(term: K, doc: &T) -> f64
-    where K: Borrow<T::Term>
+  where
+    K: Borrow<T::Term>,
   {
     1f64 + (doc.term_frequency(term) as f64).ln()
   }
@@ -76,15 +85,17 @@ impl<T> Tf<T> for LogNormalizationTf where T: ProcessedDocument
 ///
 /// impl DoubleKNormalizationTf for DoubleThirdNormalizationTf { }
 /// ```
-pub trait DoubleKNormalizationTf : NormalizationFactor { }
+pub trait DoubleKNormalizationTf: NormalizationFactor {}
 
 impl<T, S> Tf<T> for S
-  where S: DoubleKNormalizationTf,
-        T: ProcessedDocument
+where
+  S: DoubleKNormalizationTf,
+  T: ProcessedDocument,
 {
   #[inline]
   fn tf<K>(term: K, doc: &T) -> f64
-    where K: Borrow<T::Term>
+  where
+    K: Borrow<T::Term>,
   {
     let max = match doc.max() {
       Some(m) => doc.term_frequency(m) as f64,

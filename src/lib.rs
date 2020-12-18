@@ -79,11 +79,13 @@
 
 #![deny(missing_docs)]
 
-pub use prelude::{Document, NaiveDocument, ExpandableDocument, ProcessedDocument, Tf,
-                  NormalizationFactor, SmoothingFactor, TfIdf};
+pub use prelude::{
+  Document, ExpandableDocument, NaiveDocument, NormalizationFactor, ProcessedDocument,
+  SmoothingFactor, Tf, TfIdf,
+};
 
 use std::borrow::Borrow;
-use std::collections::{HashMap, BTreeMap};
+use std::collections::{BTreeMap, HashMap};
 use std::hash::Hash;
 
 mod prelude;
@@ -102,7 +104,9 @@ pub mod idf;
 #[derive(Copy, Clone)]
 pub struct TfIdfDefault;
 
-impl<T> TfIdf<T> for TfIdfDefault where T: ProcessedDocument
+impl<T> TfIdf<T> for TfIdfDefault
+where
+  T: ProcessedDocument,
 {
   type Tf = tf::DoubleHalfNormalizationTf;
   type Idf = idf::InverseFrequencyIdf;
@@ -112,10 +116,13 @@ impl<T> Document for Vec<(T, usize)> {
   type Term = T;
 }
 
-impl<T> ProcessedDocument for Vec<(T, usize)> where T: PartialEq
+impl<T> ProcessedDocument for Vec<(T, usize)>
+where
+  T: PartialEq,
 {
   fn term_frequency<K>(&self, term: K) -> usize
-    where K: Borrow<T>
+  where
+    K: Borrow<T>,
   {
     match self.iter().find(|&&(ref t, _)| t == term.borrow()) {
       Some(&(_, c)) => c,
@@ -135,8 +142,14 @@ impl<T> Document for HashMap<T, usize> {
   type Term = T;
 }
 
-impl<T> ProcessedDocument for HashMap<T, usize> where T: Eq + Hash {
-  fn term_frequency<K>(&self, term: K) -> usize where K: Borrow<Self::Term> {
+impl<T> ProcessedDocument for HashMap<T, usize>
+where
+  T: Eq + Hash,
+{
+  fn term_frequency<K>(&self, term: K) -> usize
+  where
+    K: Borrow<Self::Term>,
+  {
     if let Some(v) = self.get(term.borrow()) {
       *v
     } else {
@@ -153,13 +166,19 @@ impl<T> Document for BTreeMap<T, usize> {
   type Term = T;
 }
 
-impl<T> ProcessedDocument for BTreeMap<T, usize> where T: Ord {
-  fn term_frequency<K>(&self, term: K) -> usize where K: Borrow<Self::Term> {
-      if let Some(v) = self.get(term.borrow()) {
-        *v
-      } else {
-        0
-      }
+impl<T> ProcessedDocument for BTreeMap<T, usize>
+where
+  T: Ord,
+{
+  fn term_frequency<K>(&self, term: K) -> usize
+  where
+    K: Borrow<Self::Term>,
+  {
+    if let Some(v) = self.get(term.borrow()) {
+      *v
+    } else {
+      0
+    }
   }
 
   fn max(&self) -> Option<&Self::Term> {
