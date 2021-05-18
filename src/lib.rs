@@ -80,8 +80,8 @@
 #![deny(missing_docs)]
 
 pub use prelude::{
-  Document, ExpandableDocument, NaiveDocument, NormalizationFactor, ProcessedDocument,
-  SmoothingFactor, Tf, TfIdf, Idf,
+  Document, ExpandableDocument, Idf, NaiveDocument, NormalizationFactor, ProcessedDocument,
+  SmoothingFactor, Tf, TfIdf,
 };
 
 use std::borrow::Borrow;
