@@ -81,7 +81,7 @@
 
 pub use prelude::{
   Document, ExpandableDocument, NaiveDocument, NormalizationFactor, ProcessedDocument,
-  SmoothingFactor, Tf, TfIdf,
+  SmoothingFactor, Tf, TfIdf, Idf,
 };
 
 use std::borrow::Borrow;
