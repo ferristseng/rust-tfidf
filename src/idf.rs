@@ -63,7 +63,7 @@ where
         t + 1f64,
       )
     });
-    (S::factor() + (ttl_docs as f64 / num_docs as f64)).ln()
+    (S::factor() + (ttl_docs / num_docs)).ln()
   }
 }
 
