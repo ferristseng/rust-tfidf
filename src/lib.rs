@@ -124,7 +124,7 @@ where
   where
     K: Borrow<T>,
   {
-    match self.iter().find(|&&(ref t, _)| t == term.borrow()) {
+    match self.iter().find(|&(t, _)| t == term.borrow()) {
       Some(&(_, c)) => c,
       None => 0,
     }
@@ -132,7 +132,7 @@ where
 
   fn max(&self) -> Option<&T> {
     match self.iter().max_by_key(|&&(_, c)| c) {
-      Some(&(ref t, _)) => Some(t),
+      Some((t, _)) => Some(t),
       None => None,
     }
   }
